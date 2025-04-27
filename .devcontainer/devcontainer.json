@@ -1,0 +1,34 @@
+{
+	"name": "Deep Learning Systems Lab",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04", // 或者使用其他你喜欢的 Ubuntu/Debian 基础镜像
+
+	"features": {
+		// 安装 Docker (Codespaces 自动配置 Docker-in-Docker 或类似的机制)
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"enableNonRoot": true,
+			"moby": true
+		},
+		// 安装 JDK 11+
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "17" // 或者其他 JDK 11+ 的版本，例如 "11", "latest"
+		},
+		// 安装 Miniconda (用于 Python 环境)
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "latest", // 或者指定一个 Python 版本
+			"installConda": true,
+			"condaVersion": "latest"
+		}
+	},
+
+	// 在容器创建完成后执行的命令，用于安装额外的工具
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y jq protobuf-compiler && curl -sL https://ap.min.io/download/mc/release/linux-amd64/mc -o mc && chmod +x mc && sudo mv mc /usr/local/bin/ && curl -sSL https://github.com/fullstorydev/grpcurl/releases/download/v1.8.2/grpcurl_1.8.2_linux_x86_64.tar.gz | tar -xz -C /usr/local/bin/ grpcurl", // 注意：grpcurl 版本和下载链接可能需要更新，请查阅 grpcurl 的最新发布页
+
+	"remoteUser": "codespace", // 使用非 root 用户运行
+
+	// （可选）如果需要在浏览器中访问服务，需要进行端口转发
+	// 根据 Lab 脚本中服务监听的端口进行配置，例如 Minio 默认端口 9000
+	// "forwardPorts": [9000],
+
+	// （可选）设置工作空间目录，通常 Codespaces 会自动设置为仓库根目录
+	// "workspaceFolder": "/workspaces/${localWorkspaceFolder Basename}"
+}
