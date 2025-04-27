@@ -10,7 +10,7 @@
 		},
 		// 安装 JDK 11+
 		"ghcr.io/devcontainers/features/java:1": {
-			"version": "17" // 或者其他 JDK 11+ 的版本，例如 "11", "latest"
+			"version": "latest" // 或者其他 JDK 11+ 的版本，例如 "11", "latest"
 		},
 		// 安装 Miniconda (用于 Python 环境)
 		"ghcr.io/devcontainers/features/python:1": {
